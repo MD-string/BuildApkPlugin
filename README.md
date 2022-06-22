@@ -10,7 +10,7 @@ Gradle插件，依赖进项目工程，编译APK，使用Task命令一键上传a
 1、在项目工程跟目录，工程的build.gradle dependencies中添加：
 
 目前版本为：
-      classpath 'com.github.MD-string:BuildApkPlugin:1.0.2'
+      classpath 'com.github.MD-string:BuildApkPlugin:1.0.6'
       
 2、在app目录的build.gradle中添加引用插件：
 `apply plugin: 'md.uploadpgy.plugin'` 
@@ -31,7 +31,7 @@ uploadPgyParams {
 
 ```
 buildDingParams {
-        accessToken =  "替换为自己钉钉的token"//或者机器人accesstoken 如何获取机器人accesstoken 请联系作者
+        accessToken =  "替换为自己钉钉的token"//或者机器人accesstoken （钉钉群->群设置->添加智能群助手->添加机器人->自定义->添加成功后会有一个链接在浏览器打开 会看到accesstoken）
         // accessToken = readProperties("DingAccessToken")
         contentText = "最新开发测试包已经上传至蒲公英, 可以下载使用了"
         contentTitle = "开发测试包"
