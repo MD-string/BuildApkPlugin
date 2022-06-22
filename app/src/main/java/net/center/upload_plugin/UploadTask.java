@@ -115,7 +115,8 @@ public class UploadTask extends DefaultTask {
                     if (uploadResult.getData() != null) {
                         String url = "https://www.pgyer.com/" + uploadResult.getData().getBuildShortcutUrl();
                         System.out.println("上传成功，应用链接: " + url);
-                        SendMsgHelper.sendMsgToDingDing(mTargetProject, uploadResult.getData());
+//                        SendMsgHelper.sendMsgToDingDing(mTargetProject, uploadResult.getData());
+                        SendMsgHelper.sendMsgToDingDingType(mTargetProject, uploadResult.getData());
                         SendMsgHelper.sendMsgToFeishu(mTargetProject, uploadResult.getData());
                         SendMsgHelper.sendMsgToWeiXinGroup(mTargetProject, uploadResult.getData());
                     } else {

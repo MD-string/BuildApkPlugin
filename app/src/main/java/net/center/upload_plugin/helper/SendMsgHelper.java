@@ -68,6 +68,81 @@ public class SendMsgHelper {
         }
     }
 
+    // 钉钉 发布 样式  type 2 是markdown  格式
+    public static void sendMsgToDingDingType(Project project, PgyUploadResult.DataDTO dataDTO) {
+        SendDingParams dingParams = SendDingParams.getDingParamsConfig(project);
+        if (PluginUtils.isEmpty(dingParams.accessToken)) {
+            System.out.println("send to Dingding failure：accessToken is empty");
+            return;
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        String type = dingParams.textType;
+        if ("2".equals(type)) {
+            map.put("msgtype", "markdown");
+            DDContentModel contentModel = new DDContentModel();
+            String title = dingParams.contentTitle;
+            if (PluginUtils.isEmpty(title)) {
+                title = "测试包版本：";
+            }
+            contentModel.setTitle(title + "V" + dataDTO.getBuildVersion());
+            String text = dingParams.contentText;
+            if (PluginUtils.isEmpty(text)) {
+                text = "最新开发测试包已上传 ";
+            }
+            String qrCodeUrl = dataDTO.getBuildQRCodeURL();
+            String date = dataDTO.getBuildCreated();
+            String content = "####" + title + "\\n\\n"
+                    + "> " + text + "\\n\\n"
+                    + "> ![screenshot](" + qrCodeUrl + ")\n"
+                    + "> ###### " + date + "\\n\\n";
+            contentModel.setText(content);
+            map.put("markdown", contentModel);
+        } else {
+            map.put("msgtype", "link");
+            DDContentModel contentModel = new DDContentModel();
+            String text = dingParams.contentText;
+            if (PluginUtils.isEmpty(text)) {
+                text = "最新开发测试包已上传 ";
+            }
+            contentModel.setText(text + dataDTO.getBuildCreated());
+            String title = dingParams.contentTitle;
+            if (PluginUtils.isEmpty(title)) {
+                title = "测试包版本：";
+            }
+            contentModel.setTitle(title + "V" + dataDTO.getBuildVersion());
+            contentModel.setPicUrl(dataDTO.getBuildQRCodeURL());
+            contentModel.setMessageUrl("https://www.pgyer.com/" + dataDTO.getBuildShortcutUrl());
+            map.put("link", contentModel);
+        }
+
+        String json = JsonOutput.toJson(map);
+        upLoad2Ding(json, dingParams);
+    }
+
+    private static void upLoad2Ding(String json, SendDingParams dingParams) {
+        System.out.println("send to Dingding request json：" + json);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), json);
+        Request request = new Request.Builder()
+                .addHeader("Connection", "Keep-Alive")
+                .addHeader("Charset", "UTF-8")
+                .url("https://oapi.dingtalk.com/robot/send?access_token=" + dingParams.accessToken)
+                .post(requestBody)
+                .build();
+        try {
+            Response response = HttpHelper.getOkHttpClient().newCall(request).execute();
+            if (response.isSuccessful() && response.body() != null) {
+                String result = response.body().string();
+                System.out.println("send to Dingding result：" + result);
+            } else {
+                System.out.println("send to Dingding failure");
+            }
+            System.out.println("*************** sendMsgToDing finish ***************");
+        } catch (Exception e) {
+            System.out.println("send to Dingding failure " + e);
+        }
+    }
+
+
     public static void sendMsgToFeishu(Project project, PgyUploadResult.DataDTO dataDTO) {
         SendFeishuParams feishuParamsConfig = SendFeishuParams.getFeishuParamsConfig(project);
         String webHookHostUrl = feishuParamsConfig.webHookHostUrl;
