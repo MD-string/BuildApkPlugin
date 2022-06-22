@@ -91,10 +91,10 @@ public class SendMsgHelper {
             }
             String qrCodeUrl = dataDTO.getBuildQRCodeURL();
             String date = dataDTO.getBuildCreated();
-            String content = "####" + title + "\\n\\n"
-                    + "> " + text + "\\n\\n"
-                    + "> ![screenshot](" + qrCodeUrl + ")\n"
-                    + "> ###### " + date + "\\n\\n";
+            String content = "#### " + title
+                    + "\\n >" + text
+                    + "\\n> ![screenshot](" + qrCodeUrl + ")"
+                    + "\\n> ###### " + date;
             contentModel.setText(content);
             map.put("markdown", contentModel);
         } else {
