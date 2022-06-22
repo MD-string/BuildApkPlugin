@@ -11,6 +11,7 @@ Gradle插件，依赖进项目工程，编译APK，使用Task命令一键上传a
 
 目前版本为：
       classpath 'com.github.MD-string:BuildApkPlugin:1.0.2'
+      
 2、在app目录的build.gradle中添加引用插件：
 `apply plugin: 'md.uploadpgy.plugin'` 
 引入后，配置自己的相关平台参数：
