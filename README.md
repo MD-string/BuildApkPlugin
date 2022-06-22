@@ -27,10 +27,11 @@ uploadPgyParams {
     }
 ```
 
-### (2)发送消息到钉钉的相关配置参数
+### (2)发送消息到钉钉的相关配置参数 
 
 ```
 buildDingParams {
+        textType = "2" //2 是markdown 富文本格式，如果不填或他值 默认 link格式。
         accessToken =  "替换为自己钉钉的token"//或者机器人accesstoken （钉钉群->群设置->添加智能群助手->添加机器人->自定义->添加成功后会有一个链接在浏览器打开 会看到accesstoken）
         // accessToken = readProperties("DingAccessToken")
         contentText = "最新开发测试包已经上传至蒲公英, 可以下载使用了"
