@@ -80,7 +80,7 @@ public class SendMsgHelper {
         if ("2".equals(type)) {
             map.put("msgtype", "markdown");
             DDContentModel contentModel = new DDContentModel();
-            String title = dingParams.contentTitle;
+            String title = dingParams.contentTitle + "V" + dataDTO.getBuildVersion();
             if (PluginUtils.isEmpty(title)) {
                 title = "测试包版本：";
             }
