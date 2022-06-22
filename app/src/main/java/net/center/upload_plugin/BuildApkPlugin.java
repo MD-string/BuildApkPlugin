@@ -16,7 +16,7 @@ import org.gradle.api.Project;
  * Created by Android-MD
  * 2021/9/3.
  */
-public class UploadApkPlugin implements Plugin<Project> {
+public class BuildApkPlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
