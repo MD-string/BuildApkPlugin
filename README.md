@@ -16,7 +16,7 @@ Gradle插件，依赖进项目工程，编译APK，使用Task命令一键上传a
 `apply plugin: 'md.uploadpgy.plugin'` 
 引入后，配置自己的相关平台参数：
 
-### (1)上传到蒲公英的相关配置参数
+### (1)上传到蒲公英的相关配置参数  （必须配，生成二维码等相关信息)
 
 ```
 uploadPgyParams {
@@ -27,7 +27,7 @@ uploadPgyParams {
     }
 ```
 
-### (2)发送消息到钉钉的相关配置参数 
+### (2)发送消息到钉钉的相关配置参数  (选配 根据需求)
 
 ```
 buildDingParams {
@@ -39,7 +39,7 @@ buildDingParams {
     }
 ```
 
-### (3)发送消息到飞书的相关配置参数
+### (3)发送消息到飞书的相关配置参数 (选配 根据需求)
 
 ```
 buildFeiShuParams {
@@ -50,7 +50,7 @@ buildFeiShuParams {
         clickTxt = "点击进行下载"
     }
 ```
-### (4)发送消息到企业微信群的相关配置参数
+### (4)发送消息到企业微信群的相关配置参数 (选配 根据需求)
 
 ```
 buildWeixinGroupParams {
