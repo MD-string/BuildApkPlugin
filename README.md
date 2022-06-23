@@ -32,12 +32,13 @@ uploadPgyParams {
 ```
 buildDingParams {
         textType = "2" //2 是markdown 富文本格式，如果不填或他值 默认 link格式。
-        accessToken =  "替换为自己钉钉的token"//或者机器人accesstoken （钉钉群->群设置->添加智能群助手->添加机器人->自定义->添加成功后会有一个链接在浏览器打开 会看到accesstoken）
+        accessToken =  "替换为自己钉钉的token"
         // accessToken = readProperties("DingAccessToken")
         contentText = "最新开发测试包已经上传至蒲公英, 可以下载使用了"
         contentTitle = "开发测试包"
     }
 ```
+//或者机器人accesstoken （钉钉群->群设置->添加智能群助手->添加机器人->自定义->添加成功后会有一个链接在浏览器打开 会看到accesstoken）
 
 ### (3)发送消息到飞书的相关配置参数 (选配 根据需求)
 
@@ -73,6 +74,7 @@ buildWeixinGroupParams {
 3、配置完备，进行编译： 此时在studio的右边Gradle，tasks里面会新增一个publishToThirdPlatform
 命令组，里面会有两个task。gradlew或者点击运行组里面的task命令，则可直接进行编译、打包、传送、发消息等一些列操作。
 在执行task命令时，studio的run窗口会展示执行情况，包括蒲公英上传情况、钉钉飞书等消息发送情况，一目了然。
+
 (如果Gradle 里面没有taks 需要File->Settings->Experimental  下面 Do not build Tasks.., 选项 去掉对勾)
 
 大概情况是这样，如有不足和错误的地方，欢迎大家讨论指正！
